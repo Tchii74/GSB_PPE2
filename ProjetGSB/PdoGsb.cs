@@ -1,8 +1,8 @@
 ﻿using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
-using System.Data.SqlClient;
-using System.Text;
+using System.Data;
+using System.util;
 
 namespace ProjetGSB
 {
@@ -91,47 +91,104 @@ namespace ProjetGSB
             }
         }
 
+        
+
         /// <summary>
         /// Méthode qui execute une requete Update, Delete ou Insert
         /// </summary>
         /// <param name="requete"></param>
         public void ExecuteRequeteAdministration(string requete) 
         {
+            //ouvre la connexion
             OpenMySqlConnexion();
-            //this.connexion.Open();
 
-            MySqlCommand commande = this.connexion.CreateCommand();
-            commande.CommandText = requete;
+            //tente execute la requete
+            try
+            {
+                using MySqlCommand commande = this.connexion.CreateCommand();
+                commande.CommandText = requete;
 
-            commande.ExecuteNonQuery();
+                commande.ExecuteNonQuery();
 
+            }
+            catch
+            {
+                
+            }
+
+            //ferme la connexion
             this.connexion.Close();
 
         }
 
         /// <summary>
-        /// 
+        /// méthode qui éxécute une requète SQL de type select
         /// </summary>
-        /// <param name="requete"></param>
-        public Dictionary<string, string> ExecuteSelect (string requete)
+        /// <param name="requete">chaine de requete de type SQL</param>
+        /// <returns>une liste d'ojets des éléments de la requête</returns>
+        public List<object[]> ExecuteSelect(string requete)
         {
-            Dictionary<string, string > results = new Dictionary<string, string>();
-            this.connexion.Open();
+            // crée une liste d'ojbet
+           List<object[]> result = new List<object[]>();
 
-            //using MySqlDataReader lireRequete = lireRequete.ExecuteReader();
-            var commande = new MySqlCommand(requete, connexion);
-            MySqlDataReader lireRequete = commande.ExecuteReader();
+            //ouvre la connexion mySql
+            OpenMySqlConnexion();
 
-          while (lireRequete.Read())
+            try
             {
-               
-                results.Add((string)lireRequete.GetValue(0), (string)lireRequete.GetValue(1));
-               
+                //execute la requête SELECT
+                var commande = new MySqlCommand(requete, connexion);
+                using (MySqlDataReader lignesResult = commande.ExecuteReader())
+                {
+                    while (lignesResult.Read())
+
+                    {
+                        //crée un tableau d'objets de la taille du nombre de colones/champs de la requête
+                        object[] ligne = new object[lignesResult.FieldCount];
+                        // remplis le tableau
+                        lignesResult.GetValues(ligne);
+
+                        // ajoute la ligne à la liste d'objets
+                        result.Add(ligne);
+                    }
+                }
+                //ferme la connexion
+                this.connexion.Close();
+
+                return result;
             }
+            catch (MySqlException)
+            {
+                //ferme la connexion
+                this.connexion.Close();
 
-            connexion.Close();
-
-            return results;
+                return result;
+            }
         }
+
+
+        /// <summary>
+        /// méthode retourne la ligne d'une liste d'objet dont l'index est passé en paramètre
+        /// </summary>
+        /// <param name="list"></param>
+        public object[] GetUneLigne(List<object[]> uneListe, int index)
+        {
+            //crée un tableau d'objets de la taille du nombre de colones/champs de la requête
+            return uneListe[index];
+        }
+
+        
+
+        public object GetUnChamps(object[]champs, int index)
+        {
+            return champs[index];
+        }
+     
+        
+        public object GetUnChampsduneLigne(List<object[]> uneliste, int indexListe, int indexChamps)
+        {
+            return GetUnChamps(GetUneLigne(uneliste, indexListe), indexChamps);
+        }
+
     }
 }
