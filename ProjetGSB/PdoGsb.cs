@@ -4,6 +4,9 @@ using System.Collections.Generic;
 
 namespace ProjetGSB
 {
+    /// <summary>
+    /// classe de gestion de connexion à la base de données
+    /// </summary>
     class PdoGsb
     {
         /// <summary>

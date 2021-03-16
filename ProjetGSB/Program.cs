@@ -4,13 +4,18 @@ using System.Timers;
 namespace ProjetGSB
 {
     /// <summary>
-    /// 
+    /// classe de lancement de l'application
     /// </summary>
     class Program
     {
         // création d'un timer toutes les 
         readonly static Timer timer = new Timer(30000);
 
+        /// <summary>
+        /// méthode qui lance les traitements effectués par l'application
+        /// </summary>
+        /// <param name="source"></param>
+        /// <param name="e"></param>
         static public void Run(Object source, ElapsedEventArgs e)
         {
             PdoGsb monPdo = PdoGsb.GetInstancePdoGsb();
@@ -65,7 +70,9 @@ namespace ProjetGSB
             //Console.ReadLine();
         }
 
-
+        /// <summary>
+        /// méthode démarre le timer et qui execute la méthode run en fonction de ce timer
+        /// </summary>
         static public void SetTimer ()
         {
            // méthode run executée quand le temps est écoulé
@@ -76,10 +83,8 @@ namespace ProjetGSB
 
         }
 
-
-
         /// <summary>
-        /// 
+        /// lancement de l'application : démarrage du timer
         /// </summary>
         /// <param name="args"></param>
         static void Main(string[] args)
@@ -87,8 +92,6 @@ namespace ProjetGSB
             SetTimer();
             timer.Enabled = true;            
         }
-
-
     }
     }
 

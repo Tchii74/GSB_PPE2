@@ -6893,9 +6893,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Jannik\\Desktop\\PPE2\\ProjetGSBTests1\\ProjetGSBTests1.csproj",
-      "projectName": "ProjetGSBTests1",
-      "projectPath": "C:\\Users\\Jannik\\Desktop\\PPE2\\ProjetGSBTests1\\ProjetGSBTests1.csproj",
+      "projectUniqueName": "C:\\Users\\Jannik\\Desktop\\PPE2\\ProjetGSBTests1\\ProjetGSBTests.csproj",
+      "projectName": "ProjetGSBTests",
+      "projectPath": "C:\\Users\\Jannik\\Desktop\\PPE2\\ProjetGSBTests1\\ProjetGSBTests.csproj",
       "packagesPath": "C:\\Users\\Jannik\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\Jannik\\Desktop\\PPE2\\ProjetGSBTests1\\obj\\",
       "projectStyle": "PackageReference",

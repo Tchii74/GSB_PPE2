@@ -5,6 +5,10 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile>C:\Users\Jannik\Desktop\PPE2\ProjetGSB\ProjetGSB.xml</DocumentationFile>
+  </PropertyGroup>
+
   <ItemGroup>
     <PackageReference Include="iTextSharp" Version="5.5.13.2" />
     <PackageReference Include="MySql.Data" Version="8.0.23" />

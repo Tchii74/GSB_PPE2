@@ -2,10 +2,13 @@
 
 namespace ProjetGSB
 {
+    /// <summary>
+    /// Classe qui regroupe les méthodes de gestion des dates 
+    /// </summary>
     public class GestionDates
     {
         /// <summary>
-        /// 
+        /// constructeur qui initialise une nouvelle instance de la classe GestionDates
         /// </summary>
         public GestionDates()
         {
@@ -126,7 +129,8 @@ namespace ProjetGSB
         /// <returns>Vrai si le jour de la datetime passée en paramètre est compris entre les jours 1 et 2</returns>
         public static bool Entre(int numJour1, int numJour2, DateTime date)
         {
-            return VerifieEntre(numJour1, numJour2, date.Day);
+            int jour = date.Day;
+            return VerifieEntre(numJour1, numJour2, jour);
         }
 
         /// <summary>
@@ -136,7 +140,7 @@ namespace ProjetGSB
         /// <param name="nbPlusgrand">nb qui doit être plus grand que le nb à tester</param>
         /// <param name="nbaTester">nombre à tester</param>
         /// <returns>vrai si le numaTester est compris entre le numPlusPetit et le numPlusGrand </returns>
-        private static bool VerifieEntre(int nbPlusPetit, int nbPlusgrand,int nbaTester)
+        private static bool VerifieEntre(int nbPlusPetit, int nbPlusgrand, int nbaTester)
         {
             if (nbPlusPetit <= nbaTester && nbaTester <= nbPlusgrand)
             {

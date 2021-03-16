@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "Vddths7KL4AmBeMYIkw9sW9+VxJxcoWASrTXN+LF0zYgHcy93gsREQNcDTS0jVzSL2j9gtdATgyentRcWcN+lg==",
+  "dgSpecHash": "wi4/Am9R33B8c4HP3l+/l9DhZ9IGqR9HCxgW1P8f4i7spsl/UOMpg9Duvf/VYYSQ6n9uJi9weswkYgXDAi5pmQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Jannik\\Desktop\\PPE2\\ProjetGSBTests1\\ProjetGSBTests1.csproj",
+  "projectFilePath": "C:\\Users\\Jannik\\Desktop\\PPE2\\ProjetGSBTests1\\ProjetGSBTests.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Jannik\\.nuget\\packages\\bouncycastle\\1.8.6.1\\bouncycastle.1.8.6.1.nupkg.sha512",
     "C:\\Users\\Jannik\\.nuget\\packages\\bouncycastle.netcore\\1.8.5\\bouncycastle.netcore.1.8.5.nupkg.sha512",

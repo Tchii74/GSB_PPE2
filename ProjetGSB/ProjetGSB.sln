@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.30204.135
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProjetGSB", "ProjetGSB.csproj", "{6264F31E-4B41-4AD6-920F-021FC21A7918}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProjetGSBTests1", "..\ProjetGSBTests1\ProjetGSBTests1.csproj", "{D0DFA2C1-45B1-434C-9260-C7087D3453A5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProjetGSBTests", "..\ProjetGSBTests1\ProjetGSBTests.csproj", "{D0DFA2C1-45B1-434C-9260-C7087D3453A5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
