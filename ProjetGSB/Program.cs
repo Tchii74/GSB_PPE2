@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Timers;
 
 namespace ProjetGSB
@@ -10,15 +9,17 @@ namespace ProjetGSB
     class Program
     {
         // création d'un timer toutes les 
-        readonly static Timer timer = new Timer(2000);
+        readonly static Timer timer = new Timer(30000);
 
-        static public void Run()//Object source, ElapsedEventArgs e
+        static public void Run(Object source, ElapsedEventArgs e)
         {
             PdoGsb monPdo = PdoGsb.GetInstancePdoGsb();
 
-            string test = "SELECT id, nom, prenom FROM visiteur";
-            LinkedList<object[]>test1 = monPdo.ExecuteSelect(test);
-
+            // test des méthodes executeselect et getuneligne
+            //string test = "SELECT id, nom, prenom FROM visiteur";
+            //List<object[]>test1 = monPdo.ExecuteSelect(test);
+           // int nomatrouver =2;
+           //object[] monchamps = monPdo.GetUneLigne(test1, nomatrouver);
 
             // recuperer mois n-1
             var moisPrecedent = GestionDates.GetMoisPrecedent();
@@ -36,12 +37,12 @@ namespace ProjetGSB
             }
 
             //verifie que l'on est bien entre le 01 et le 10 du mois
-            if (GestionDates.Entre(01, 15))
+            if (GestionDates.Entre(01, 16))
             {
                 //passer les fiches de frais du mois n-1 à l'etat "CL"                
                 string requete = $"UPDATE fichefrais SET idetat = 'CL' WHERE mois = {datePrecedente}";
                 monPdo.ExecuteRequeteAdministration(requete);
-
+               
             }
             else
             {
@@ -58,15 +59,17 @@ namespace ProjetGSB
                     // on ne fait aucune action
                 }
             }
-            Console.WriteLine($"ok,{DateTime.Now}");
-            Console.ReadLine();
+
+            //tests de fonctionnement du timer
+            //Console.WriteLine($"ok,{DateTime.Now}");
+            //Console.ReadLine();
         }
 
 
         static public void SetTimer ()
         {
-            // méthode run executée quand le temps est écoulé
-           // timer.Elapsed += Run;
+           // méthode run executée quand le temps est écoulé
+           timer.Elapsed += Run;
 
             // retour à zéro du timer
             timer.AutoReset = true;
@@ -81,13 +84,8 @@ namespace ProjetGSB
         /// <param name="args"></param>
         static void Main(string[] args)
         {
-            //SetTimer();
-            //timer.Enabled = true;
-
-            //Console.WriteLine("fermer l'application");
-            //Console.ReadLine();
-            Run();
-
+            SetTimer();
+            timer.Enabled = true;            
         }
 
 

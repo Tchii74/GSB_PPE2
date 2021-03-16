@@ -1,22 +1,44 @@
 ﻿using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
-using System.Data;
-using System.util;
 
 namespace ProjetGSB
 {
     class PdoGsb
     {
         /// <summary>
-        /// 
+        /// chaine de connexion au serveur MySql
         /// </summary>
         private string ChaineConnexion { get; set; }
+
+        /// <summary>
+        /// nom du serveur MySql
+        /// </summary>
         private static readonly string server = "localhost";
+
+        /// <summary>
+        /// identifiant utilisateur
+        /// </summary>
         private static readonly string user = "root";
+
+        /// <summary>
+        /// mot de passe utilisateur
+        /// </summary>
         private static readonly string mdp = "";
+
+        /// <summary>
+        /// nom de la base de donnée à laquelle se connecter
+        /// </summary>
         private static readonly string database = "gsb_frais";
+
+        /// <summary>
+        /// instance unique de connexion à la base de données
+        /// </summary>
         private static PdoGsb instancePdoGsb = null;
+
+        /// <summary>
+        /// connexion mysql
+        /// </summary>
         private MySqlConnection connexion;
 
 
@@ -41,8 +63,8 @@ namespace ProjetGSB
                 Database = database
             };
 
-            string chaineConnexion = connectionString.ToString();
-            this.connexion = new MySqlConnection(chaineConnexion);
+            this.ChaineConnexion = connectionString.ToString();
+            this.connexion = new MySqlConnection(this.ChaineConnexion);
         }
 
         /// <summary>
@@ -170,21 +192,33 @@ namespace ProjetGSB
         /// <summary>
         /// méthode retourne la ligne d'une liste d'objet dont l'index est passé en paramètre
         /// </summary>
-        /// <param name="list"></param>
+        /// <param name="uneListe">une liste de tableaux d'objets</param>
+        /// <param name="index">numéro d'index de la ligne recherchée</param>
+        /// <returns>retourne un tableau d'objet</returns>
         public object[] GetUneLigne(List<object[]> uneListe, int index)
         {
             //crée un tableau d'objets de la taille du nombre de colones/champs de la requête
             return uneListe[index];
         }
 
-        
-
-        public object GetUnChamps(object[]champs, int index)
+        /// <summary>
+        /// méthode retourne la valeur d'un champs dans un tableau dont l'index est passé en paramètre
+        /// </summary>
+        /// <param name="tabObjets">tableau d'objets</param>
+        /// <param name="index">numéro d'index du champs recherché</param>
+        /// <returns>retourne un objet</returns>
+        public object GetUnChamps(object[]tabObjets, int index)
         {
-            return champs[index];
+            return tabObjets[index];
         }
-     
-        
+
+        /// <summary>
+        /// méthode retourne la valeur d'un champs dans une liste de tableau d'objet, dont l'index de la liste et du tableau sont passés en paramètre
+        /// </summary>
+        /// <param name="uneliste">une liste de tableaux d'objets</param>
+        /// <param name="indexListe">numéro d'index de la ligne recherchée</param>
+        /// <param name="indexChamps">numéro d'index du champs recherché</param>
+        /// <returns>retourne un objet</returns>
         public object GetUnChampsduneLigne(List<object[]> uneliste, int indexListe, int indexChamps)
         {
             return GetUnChamps(GetUneLigne(uneliste, indexListe), indexChamps);
